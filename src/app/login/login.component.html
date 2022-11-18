@@ -1,0 +1,44 @@
+<main class="form-signin">
+  <div class="container my-5">
+    <div class="row g-5">
+    <form class="needs-validation" #loginForm="ngForm">
+      <div class="row">
+        <div class="col-12 col-md my-2 d-flex justify-content-center">
+          <img class="d-flex justify-content-center mb-4" src="../assets/img/johnson-icon64x64.png" alt="" width="64" height="64">
+        </div>
+      </div>
+      <h1 class="h3 mb-3 fw-normal d-flex justify-content-center">Inicio de sesión</h1>
+
+      <div class="form-floating">
+        <input [(ngModel)]="user.username" name="username" #username="ngModel" type="text" class="form-control" id="floatingInput" placeholder="usuario o correo" required>
+        <label for="floatingInput">Usuario</label>
+        <div class="alert alert-danger" *ngIf="username.invalid && (username.dirty || username.touched)">
+           <div *ngIf="username.errors?.['required']">Usuario es requerido</div>
+        </div>
+      </div>
+      <div class="form-floating">
+        <input [(ngModel)]="user.password" name="password" #password="ngModel" type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" required>
+        <label for="floatingPassword">Contraseña</label>
+        <div class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+           <div *ngIf="password.errors?.['required']">Contraseña es requerida</div>
+        </div>
+      </div>
+      <div class="container d-flex justify-content-center">
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"> Recordarme
+          </label>
+        </div>
+        <a class="mx-2" href="./CreateAccount.html">Crear cuenta</a>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" (click)="attempt()" type="button" [disabled]="!loginForm.form.valid">Acceder</button>
+      <div class="row">
+        <div class="col-12 col-md my-2 d-flex justify-content-center">
+          <img src="../assets/img/johnson-icon64x64.png" width="32px" height="32px" alt="Company name" />
+          <small class="d-block mb-3 mx-2 text-muted">&copy; company name</small>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+</main>

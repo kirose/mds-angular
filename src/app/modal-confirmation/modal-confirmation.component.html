@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <h4 class="modal-title">Confirmacion</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<form class="needs-validation" #confirmationForm="ngForm">
+  <div class="modal-body">
+      <div class="row g-3">
+        <div class="col-12">
+          <label for="firstName" class="form-label">Numero de Empleado</label>
+          <input [(ngModel)]="empleado" #empleadoModel="ngModel" id="empleadoModel" name="empleadoModel" type="text" class="form-control" placeholder="Numero de Empleado" value="" required>
+          <div class="alert alert-danger" *ngIf="empleadoModel.invalid && (empleadoModel.dirty || empleadoModel.touched)">
+             <div *ngIf="empleadoModel.errors?.required">El numero de empleado es requerido.</div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="modal-footer">
+    <div [ngClass]="error ? 'alert alert-danger': 'alert alert-primary'" *ngIf="message">{{message}}</div>
+    <button type="button" class="btn btn-secondary" (click)="cancel()" >Cancelar</button>
+    <button type="button" class="btn btn-primary" (click)="activate()" [disabled]="!confirmationForm.form.valid">Activar</button>
+  </div>
+</form>

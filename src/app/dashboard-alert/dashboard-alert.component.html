@@ -1,0 +1,75 @@
+<div class="container-fluid">
+  <div class="row">
+    <app-dashboard-sidebar></app-dashboard-sidebar>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-5">
+      <div class="row g-5">
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Informacion requerida</h4>
+
+        <form class="needs-validation" #alertForm="ngForm">
+          <div class="row g-3">
+            <div class="col-12">
+              <label for="firstName" class="form-label">Numero de Empleado</label>
+              <input [(ngModel)]="alert.empleado" #empleado="ngModel" id="empleado" name="empleado" type="text" class="form-control" placeholder="Numero de Empleado" value="" required>
+              <div class="alert alert-danger" *ngIf="empleado.invalid && (empleado.dirty || empleado.touched)">
+                 <div *ngIf="empleado.errors?.required">Numero de empleado es requerido.</div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="country" class="form-label">Sensor</label>
+              <select [(ngModel)]="alert.sensor" #sensor="ngModel" name="sensor" id="sensor" class="form-select" required>
+                <option [value]="undefined" [ngValue]="undefined" [selected]="alert.sensor == undefined">Seleccionar...</option>
+                <option *ngFor="let sensor of sensores" [ngValue]="sensor" [selected]="sensor == alert.sensor">{{sensor}}</option>
+              </select>
+              <div class="alert alert-danger" *ngIf="sensor.invalid && (sensor.dirty || (sensor.touched && sensor.value == undefined))">
+                <div *ngIf="sensor.errors?.required">Seleccionar un sensor.</div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="firstName" class="form-label">Host</label>
+              <input [(ngModel)]="alert.host" #host="ngModel" id="host" name="host" type="text" class="form-control" placeholder="ej. 10.54.10.34" value="" required>
+              <div class="alert alert-danger" *ngIf="host.invalid && (host.dirty || host.touched)">
+                 <div *ngIf="host.errors?.required">Host es requerido.</div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="country" class="form-label">Motivo apagado alerta</label>
+              <select [(ngModel)]="alert.motivo" #motivo="ngModel" name="motivo" id="motivo" class="form-select" required>
+                <option [value]="undefined" [ngValue]="undefined" [selected]="alert.motivo == undefined">Seleccionar...</option>
+                <option *ngFor="let motivo of motivos" [ngValue]="motivo" [selected]="motivo == alert.motivo">{{motivo}}</option>
+              </select>
+              <div class="alert alert-danger" *ngIf="motivo.invalid && (motivo.dirty || (motivo.touched && motivo.value == undefined))">
+                <div *ngIf="motivo.errors?.required">Seleccionar un motivo.</div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="firstName" class="form-label">Justificacion</label>
+              <input [(ngModel)]="alert.justificacion" #justificacion="ngModel" id="justificacion" name="justificacion" type="text" class="form-control" placeholder="Justificacion de apagado" value="" required>
+              <div class="alert alert-danger" *ngIf="justificacion.invalid && (justificacion.dirty || justificacion.touched)">
+                 <div *ngIf="justificacion.errors?.required">La justificacion es requerida.</div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="firstName" class="form-label">Fecha de activacion de Alerta</label>
+              <input [(ngModel)]="alert.vigencia" #vigencia="ngModel" id="vigencia" name="vigencia" type="text" class="form-control" placeholder="Fecha de activacion de Alerta" value="" required>
+              <div class="alert alert-danger" *ngIf="vigencia.invalid && (vigencia.dirty || vigencia.touched)">
+                 <div *ngIf="vigencia.errors?.required">La fecha de activacion es requerida.</div>
+              </div>
+            </div>
+          </div>
+          <hr class="my-4">
+
+          <button class="w-100 btn btn-lg btn-primary" (click)="save()" type="button" [disabled]="!alertForm.form.valid || saving">Guardar</button>
+          <div [ngClass]="error ? 'alert alert-danger': 'alert alert-success'" *ngIf="message">{{message}}</div>
+        </form>
+      </div>
+    </div>
+    </main>
+  </div>
+</div>
