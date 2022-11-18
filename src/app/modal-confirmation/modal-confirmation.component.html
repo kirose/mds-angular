@@ -17,6 +17,6 @@
   <div class="modal-footer">
     <div [ngClass]="error ? 'alert alert-danger': 'alert alert-primary'" *ngIf="message">{{message}}</div>
     <button type="button" class="btn btn-secondary" (click)="cancel()" >Cancelar</button>
-    <button type="button" class="btn btn-primary" (click)="activate()" [disabled]="!confirmationForm.form.valid">Activar</button>
+    <button type="button" class="btn btn-primary" (click)="activate()" [disabled]="!confirmationForm.form.valid || saving">Activar</button>
   </div>
 </form>

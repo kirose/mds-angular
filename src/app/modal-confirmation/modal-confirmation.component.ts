@@ -18,13 +18,16 @@ export class ModalConfirmationComponent implements OnInit {
   public empleado:string;
   public error:boolean;
   public message:string;
+  public saving:boolean = false;
 	constructor(public activeModal: NgbActiveModal, private alertService: AlertService) {}
   ngOnInit(): void {
   }
   activate() {
+    this.saving = true;
     this.alertService.activete(this.idAlert, this.empleado)
     .pipe(
       catchError((e:any) => {
+        this.saving = false;
         this.error = true;
         this.message = "Ocurrio un error al activar la alerta";
         return throwError(e);

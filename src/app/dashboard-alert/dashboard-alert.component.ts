@@ -25,6 +25,9 @@ export class DashboardAlertComponent implements OnInit {
   }
   public save():void {
     this.saving = true;
+    if (!this.alert.estatus) {
+      this.alert.estatus = "1";
+    }
     this.alertService.insert(this.alert)
     .pipe(
       catchError((e:any) => {

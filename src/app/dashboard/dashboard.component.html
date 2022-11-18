@@ -22,6 +22,7 @@
         <table class="table table-striped table-sm">
           <thead>
             <tr>
+              <th scope="col">Id</th>
               <th scope="col">Host</th>
               <th scope="col">Sensor</th>
               <th scope="col">Dispositivo</th>
@@ -34,6 +35,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let alert of alerts">
+              <td>{{alert.id}}</td>
               <td>{{alert.host}}</td>
               <td>{{alert.sensor}}</td>
               <td>{{alert.dispositivo}}</td>

@@ -3,12 +3,13 @@ import { Router} from '@angular/router';
 import { of, Observable, throwError } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { User } from '../model/user';
+import { environment } from '../../environments/environment';
 
 export abstract class AbstractService {
   public token: string | undefined;
   public csrfToken: string | undefined;
-  protected url:string = "http://localhost:8004";//"http://localhost";//
-  protected urlLogin:string = "http://localhost:8004/login";//"http://localhost/login";//
+  protected url:string = environment.url;
+  protected urlLogin:string = environment.url+"/login";
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(protected router: Router, protected http: HttpClient){}
