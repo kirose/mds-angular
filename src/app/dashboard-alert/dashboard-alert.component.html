@@ -2,137 +2,137 @@
   <div class="row">
     <app-dashboard-sidebar></app-dashboard-sidebar>
 
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-5">
+    <main class="col-md-9 ms-sm-auto col-lg-8 px-md-4 mt-5">
       <div class="row g-5">
-      <div class="col-md-7 col-lg-8">
-        <h4 class="mb-3">Informacion requerida</h4>
+        <div class="col-md-7 col-lg-8">
+          <h4 class="mb-3">Informacion requerida</h4>
 
-        <form class="needs-validation" #alertForm="ngForm">
-          <div class="row g-3">
-            <div class="col-12">
-              <label for="empleado" class="form-label">Numero de Empleado</label>
-              <input [(ngModel)]="alert.empleado"
-                #empleado="ngModel"
-                id="empleado"
-                name="empleado"
-                type="text"
-                class="form-control"
-                [ngClass]="empleado.invalid && (empleado.dirty || empleado.touched) ? 'is-invalid' : ''"
-                placeholder="Numero de Empleado"
-                value=""
-                required>
-              <div class="invalid-feedback"
-                *ngIf="empleado.invalid && (empleado.dirty || empleado.touched) && empleado.errors?.required">
-                Numero de empleado es requerido.
+          <form class="needs-validation" #alertForm="ngForm">
+            <div class="row g-3">
+              <div class="col-12">
+                <label for="empleado" class="form-label">Numero de Empleado</label>
+                <input [(ngModel)]="alert.empleado"
+                  #empleado="ngModel"
+                  id="empleado"
+                  name="empleado"
+                  type="text"
+                  class="form-control"
+                  [ngClass]="empleado.invalid && (empleado.dirty || empleado.touched) ? 'is-invalid' : ''"
+                  placeholder="Numero de Empleado"
+                  value=""
+                  required>
+                <div class="invalid-feedback"
+                  *ngIf="empleado.invalid && (empleado.dirty || empleado.touched) && empleado.errors?.required">
+                  Numero de empleado es requerido.
+                </div>
               </div>
-            </div>
 
-            <div class="col-12">
-              <label for="sensor" class="form-label">Sensor</label>
-              <select [(ngModel)]="alert.sensor"
-                #sensor="ngModel"
-                name="sensor"
-                id="sensor"
-                class="form-select"
-                [ngClass]="sensor.invalid && (sensor.dirty || sensor.touched) ? 'is-invalid' : ''"
-                required>
-                <option [value]="undefined"
-                  [ngValue]="undefined"
-                  [selected]="alert.sensor == undefined">Seleccionar...</option>
-                <option *ngFor="let sensor of sensores"
-                  [ngValue]="sensor"
-                  [selected]="sensor == alert.sensor">{{sensor}}</option>
-              </select>
-              <div class="invalid-feedback"
-                *ngIf="sensor.invalid && (sensor.dirty || sensor.touched) && sensor.errors?.required">
-                Seleccionar un sensor.
+              <div class="col-12">
+                <label for="sensor" class="form-label">Sensor</label>
+                <select [(ngModel)]="alert.sensor"
+                  #sensor="ngModel"
+                  name="sensor"
+                  id="sensor"
+                  class="form-select"
+                  [ngClass]="sensor.invalid && (sensor.dirty || sensor.touched) ? 'is-invalid' : ''"
+                  required>
+                  <option [value]="undefined"
+                    [ngValue]="undefined"
+                    [selected]="alert.sensor == undefined">Seleccionar...</option>
+                  <option *ngFor="let sensor of sensores"
+                    [ngValue]="sensor"
+                    [selected]="sensor == alert.sensor">{{sensor}}</option>
+                </select>
+                <div class="invalid-feedback"
+                  *ngIf="sensor.invalid && (sensor.dirty || sensor.touched) && sensor.errors?.required">
+                  Seleccionar un sensor.
+                </div>
               </div>
-            </div>
 
-            <div class="col-12">
-              <label for="host" class="form-label">Host</label>
-              <input [(ngModel)]="alert.host"
-                #host="ngModel"
-                id="host"
-                name="host"
-                type="text"
-                class="form-control"
-                [ngClass]="host.invalid && (host.dirty || host.touched) ? 'is-invalid' : ''"
-                placeholder="ej. 10.54.10.34"
-                value=""
-                pattern="^((25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])$"
-                required>
-              <div class="invalid-feedback" *ngIf="host.invalid && (host.dirty || host.touched) && host.errors?.required">
-                Host es invalido.
+              <div class="col-12">
+                <label for="host" class="form-label">Host</label>
+                <input [(ngModel)]="alert.host"
+                  #host="ngModel"
+                  id="host"
+                  name="host"
+                  type="text"
+                  class="form-control"
+                  [ngClass]="host.invalid && (host.dirty || host.touched) ? 'is-invalid' : ''"
+                  placeholder="ej. 10.54.10.34"
+                  value=""
+                  pattern="^((25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])$"
+                  required>
+                <div class="invalid-feedback" *ngIf="host.invalid && (host.dirty || host.touched) && host.errors?.required">
+                  Host es invalido.
+                </div>
               </div>
-            </div>
 
-            <div class="col-12">
-              <label for="motivo" class="form-label">Motivo apagado alerta</label>
-              <select [(ngModel)]="alert.motivo"
-                #motivo="ngModel"
-                name="motivo"
-                id="motivo"
-                class="form-select"
-                [ngClass]="motivo.invalid && (motivo.dirty || motivo.touched) ? 'is-invalid' : ''"
-                required>
-                <option [value]="undefined"
-                  [ngValue]="undefined"
-                  [selected]="alert.motivo == undefined">Seleccionar...</option>
-                <option *ngFor="let motivo of motivos"
-                  [ngValue]="motivo"
-                  [selected]="motivo == alert.motivo">{{motivo}}</option>
-              </select>
-              <div class="invalid-feedback" *ngIf="motivo.invalid && (motivo.dirty || motivo.touched) && motivo.errors?.required">
-                Seleccionar un motivo.
+              <div class="col-12">
+                <label for="motivo" class="form-label">Motivo apagado alerta</label>
+                <select [(ngModel)]="alert.motivo"
+                  #motivo="ngModel"
+                  name="motivo"
+                  id="motivo"
+                  class="form-select"
+                  [ngClass]="motivo.invalid && (motivo.dirty || motivo.touched) ? 'is-invalid' : ''"
+                  required>
+                  <option [value]="undefined"
+                    [ngValue]="undefined"
+                    [selected]="alert.motivo == undefined">Seleccionar...</option>
+                  <option *ngFor="let motivo of motivos"
+                    [ngValue]="motivo"
+                    [selected]="motivo == alert.motivo">{{motivo}}</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="motivo.invalid && (motivo.dirty || motivo.touched) && motivo.errors?.required">
+                  Seleccionar un motivo.
+                </div>
               </div>
-            </div>
 
-            <div class="col-12">
-              <label for="justificacion" class="form-label">Justificacion</label>
-              <input [(ngModel)]="alert.justificacion"
-                #justificacion="ngModel"
-                id="justificacion"
-                name="justificacion"
-                type="text"
-                class="form-control"
-                [ngClass]="justificacion.invalid && (justificacion.dirty || justificacion.touched) ? 'is-invalid' : ''"
-                placeholder="Justificacion de apagado"
-                value=""
-                required>
-              <div class="invalid-feedback"
-              *ngIf="justificacion.invalid && (justificacion.dirty || justificacion.touched) && justificacion.errors?.required">
-                La justificacion es requerida.
+              <div class="col-12">
+                <label for="justificacion" class="form-label">Justificacion</label>
+                <input [(ngModel)]="alert.justificacion"
+                  #justificacion="ngModel"
+                  id="justificacion"
+                  name="justificacion"
+                  type="text"
+                  class="form-control"
+                  [ngClass]="justificacion.invalid && (justificacion.dirty || justificacion.touched) ? 'is-invalid' : ''"
+                  placeholder="Justificacion de apagado"
+                  value=""
+                  required>
+                <div class="invalid-feedback"
+                *ngIf="justificacion.invalid && (justificacion.dirty || justificacion.touched) && justificacion.errors?.required">
+                  La justificacion es requerida.
+                </div>
               </div>
-            </div>
 
-            <div class="col-12">
-              <label for="vigencia" class="form-label">Fecha de activacion de Alerta</label>
-              <app-date-time-picker [(ngModel)]="alert.vigencia"
-                #vigencia="ngModel"
-                id="vigencia"
-                name="vigencia"
-                [ngClass]="vigencia.invalid && (vigencia.dirty || vigencia.touched) ? 'is-invalid' : ''"
-                placeholder="Fecha de activacion de Alerta"
-                required="true"></app-date-time-picker>
-              <div class="invalid-feedback" *ngIf="vigencia.invalid && (vigencia.dirty || vigencia.touched) && vigencia.errors?.required">
-                La fecha de activacion es requerida.
+              <div class="col-12">
+                <label for="vigencia" class="form-label">Fecha de activacion de Alerta</label>
+                <app-date-time-picker [(ngModel)]="alert.vigencia"
+                  #vigencia="ngModel"
+                  id="vigencia"
+                  name="vigencia"
+                  [ngClass]="vigencia.invalid && (vigencia.dirty || vigencia.touched) ? 'is-invalid' : ''"
+                  placeholder="Fecha de activacion de Alerta"
+                  required="true"></app-date-time-picker>
+                <div class="invalid-feedback" *ngIf="vigencia.invalid && (vigencia.dirty || vigencia.touched) && vigencia.errors?.required">
+                  La fecha de activacion es requerida.
+                </div>
               </div>
+
             </div>
+            <hr class="my-4">
 
-          </div>
-          <hr class="my-4">
+            <button class="w-100 btn btn-lg btn-primary"
+              (click)="save()"
+              type="button"
+              [disabled]="!alertForm.form.valid || saving">Guardar</button>
+            <div [ngClass]="error ? 'alert alert-danger': 'alert alert-success'"
+              *ngIf="message">{{message}}</div>
 
-          <button class="w-100 btn btn-lg btn-primary"
-            (click)="save()"
-            type="button"
-            [disabled]="!alertForm.form.valid || saving">Guardar</button>
-          <div [ngClass]="error ? 'alert alert-danger': 'alert alert-success'"
-            *ngIf="message">{{message}}</div>
-
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
     </main>
   </div>
 </div>

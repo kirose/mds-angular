@@ -6,10 +6,20 @@
   <div class="modal-body">
       <div class="row g-3">
         <div class="col-12">
-          <label for="firstName" class="form-label">Numero de Empleado</label>
-          <input [(ngModel)]="empleado" #empleadoModel="ngModel" id="empleadoModel" name="empleadoModel" type="text" class="form-control" placeholder="Numero de Empleado" value="" required>
-          <div class="alert alert-danger" *ngIf="empleadoModel.invalid && (empleadoModel.dirty || empleadoModel.touched)">
-             <div *ngIf="empleadoModel.errors?.required">El numero de empleado es requerido.</div>
+          <label for="empleadoModel" class="form-label">Numero de Empleado</label>
+          <input [(ngModel)]="empleado"
+            #empleadoModel="ngModel"
+            id="empleadoModel"
+            name="empleadoModel"
+            type="text"
+            class="form-control"
+            [ngClass]="empleadoModel.invalid && (empleadoModel.dirty || empleadoModel.touched) ? 'is-invalid' : ''"
+            placeholder="Numero de Empleado"
+            value=""
+            required>
+          <div class="invalid-feedback"
+            *ngIf="empleadoModel.invalid && (empleadoModel.dirty || empleadoModel.touched) && empleadoModel.errors?.required">
+            Numero de empleado es requerido.
           </div>
         </div>
       </div>

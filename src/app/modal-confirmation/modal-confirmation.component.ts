@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AlertService } from '../service/alert.service';
 import { Output, EventEmitter } from '@angular/core';
-import * as $ from 'jquery';
 import { catchError } from 'rxjs/operators';
 import { of, Observable, throwError } from 'rxjs';
 
@@ -14,7 +13,6 @@ import { of, Observable, throwError } from 'rxjs';
 export class ModalConfirmationComponent implements OnInit {
   @Input() idAlert:string;
   @Input() alertActivation:EventEmitter<string>;
-  @Input() event:Event;
   public empleado:string;
   public error:boolean;
   public message:string;
@@ -42,7 +40,6 @@ export class ModalConfirmationComponent implements OnInit {
   }
   cancel(){
     this.activeModal.close('Cancel');
-    $(this.event.target as any).click();
   }
 }
 
@@ -57,17 +54,11 @@ export class ModalConfirmationComponent implements OnInit {
 export class SwitchConfirmationComponent {
   @Input() idAlert:string;
   @Output() alertActivation = new EventEmitter<string>();
-  private enabled = false;
 	constructor(private modalService: NgbModal) {}
-	open(e:Event) {
-    if (this.enabled) {
-      this.enabled = false;
-    } else {
-      this.enabled = true;
-      const modalRef = this.modalService.open(ModalConfirmationComponent);
-      modalRef.componentInstance.idAlert = this.idAlert;
-      modalRef.componentInstance.alertActivation = this.alertActivation;
-      modalRef.componentInstance.event = e;
-    }
+  open(e:Event) {
+    e.preventDefault();
+    const modalRef = this.modalService.open(ModalConfirmationComponent, {centered:true});
+    modalRef.componentInstance.idAlert = this.idAlert;
+    modalRef.componentInstance.alertActivation = this.alertActivation;
 	}
 }
